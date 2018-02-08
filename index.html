@@ -60,6 +60,7 @@ https://github.com/pointbiz/bitaddress.org
 -->
 
   <title>Moin Paper Wallet Generator</title>
+  <script src="grained.min.js"></script>
 
   <script type="text/javascript">
 // Array.prototype.map function is in the public domain.
@@ -9313,7 +9314,7 @@ function QRCodeScanner(width, height, container, success, error) {
   <style type="text/css">
 .more { background: url("./images/plus.png") no-repeat left center; width: 17px; height: 17px; display: inline-block; float: right; }
 .less { background: url("./images/minus.png") no-repeat left center; width: 17px; height: 17px; display: inline-block; float: right; }
-a { position: relative; z-index: 20; text-decoration: none; color: #4b77a4; font-weight: bold; }
+a { position: relative; z-index: 20; text-decoration: none; color:  #2bc7d4; font-weight: bold; }
 a:hover { text-decoration: underline; }
 .right { text-align: right; }
 .walletarea { display: none; background-color: white; border-radius: 20px;}
@@ -9328,7 +9329,7 @@ hr { margin: 20px 0; border-top: 1px dashed #008000; }
 .keyarea .qrcode_private { display: inline-block; position: relative; top: 28px; float: right; }
 .pubkeyhex { word-wrap: break-word; }
 html { height: 100%; }
-body { font-family: Arial; background-image: url(images/moinbg_orig.jpg); height: 100%; margin:0;}
+body { font-family: Arial; background-image: url('images/background.png'); background-size: 100%; margin:0;}
 .faqs ol { padding: 0 0 0 25px; }
 .faqs li { padding: 3px 0; }
 .question { padding: 10px 15px; text-align: left; cursor: pointer; }
@@ -9339,6 +9340,7 @@ body { font-family: Arial; background-image: url(images/moinbg_orig.jpg); height
 #initBanner { position: relative; text-align: left; padding: 15px; background-color: white; border-bottom: 1px solid #bfbfbf; border-radius:20px 20px 0 0; }
 #walletCommands { display: none; border-radius: 0 20px 0 0; }
 #keyarea { display: none; }
+#wallets{box-shadow: 0px 3px 10px black; border-radius: 15px 15px 15px 15px; background: white}
 
 #faqZone { text-align: left; padding: 10px 30px 30px 30px; }
 .faqQuestion { margin-left: 15px; }
@@ -9474,21 +9476,24 @@ margin: 10px 0;
 input, button, submit { border:none; }
 
 .btn {
-  -webkit-border-radius: 6;
-  -moz-border-radius: 6;
-  border-radius: 6px;
+  -webkit-border-radius: 5;
+  -moz-border-radius: 5;
+  border-radius: 5px;
   font-family: Arial;
-  color: #ffffff;
   font-size: 16px;
-  background: #787878;
   padding: 5px 20px 5px 20px;
   text-decoration: none;
   cursor: pointer;
+  color: #000;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .33); 
+  background: #20e8ff; 
 }
 
 .btn:hover {
-  background: #8f885a;
   text-decoration: none;
+  color: white;
+  background: #788888; 
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .33);  
 }
 .btn a:hover {
   text-decoration: none;
@@ -9500,18 +9505,18 @@ input, button, submit { border:none; }
 .coinIcoin { width: 64px; height: 64px; padding: 10px; position: absolute; top: 272px; left: 48px; display:none; }
 #coinImg { width: 100%; height: 100%; }
 
-#main { position: relative; text-align: center; margin: 0px auto; width: 1005px; }
+#main { position: relative; text-align: center; margin: 0px auto; width: 1005px; margin-bottom: 125px}
 #logo { width: 578px; height: 80px; }
 
 .backLogo { float: right; width: 50px; height: 50px; }
 
 #paperarea { min-height: 120px; display: none; }
 #paperarea .keyarea { border: 1px solid #BFBFBF; border-top: 0; }
-#paperarea .keyarea.art { display: block; height: auto; border: 0; font-family: Ubuntu, Arial; padding: 0; margin: 0; }
-#paperarea .artwallet .papersvg { width: 1004px; height: 426px; border: 0; margin: 0; padding: 0; left: 0; }
-#paperarea .artwallet .qrcode_public { top: 263px; left: 780px; z-index: 100; margin: 0; float: none; display: block; position: absolute; background-color: #FFFFFF;
+#paperarea .keyarea.art { display: block; height: auto; border: 0; font-family: Ubuntu, Arial; padding: 0; margin: 0; box-shadow: 0 0px 10px rgba(0,0,0,.67); }
+#paperarea .artwallet .papersvg { background: white; width: 1004px; height: 426px; border: 0; margin: 0; padding: 0; left: 0; }
+#paperarea .artwallet .qrcode_public { top: 247px; right: 558px; z-index: 100; margin: 0; float: none; display: block; position: absolute; background-color: #FFFFFF;
                                     padding: 5px 5px 2px 5px; }
-#paperarea .artwallet .qrcode_private { top: 37px; right: 446px; z-index: 100; margin: 0; float: none; display: block; position: absolute; background-color: #FFFFFF;
+#paperarea .artwallet .qrcode_private { top: 52px; right: 558px; z-index: 100; margin: 0; float: none; display: block; position: absolute; background-color: #FFFFFF;
                                     padding: 5px 5px 2px 5px;
                                     -ms-transform: rotate(180deg); /* IE 9 */
                     -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
@@ -9519,9 +9524,23 @@ input, button, submit { border:none; }
                                      }
 .supportWalletGenerator { margin: 30px; }
 .errorMsg { color: red; text-align: center !important; width: 100% !important; padding-top: 15px !important; }
+.artwallet {
+	height: 426px;
+	width: 1004px;
+}
+#noise {
+	position: absolute;
+	width: 324px;
+	height: 426px;
+	left: 565px;
+	margin: 0;
+	padding: 0;
+	float: none;
+	z-index: 2000;
+}
 #paperarea .artwallet .btcaddress
 {
-  position: absolute; bottom: 88px; left: 874px; z-index: 100; font-size: 11px; background-color: transparent;
+  position: absolute; bottom: 98px; right: 448px; z-index: 100; font-size: 11px; background-color: transparent;
   font-weight: 100; color: #000000; margin: 0; width: 124px; height: 32px; text-align: center;
     word-wrap: break-word; font-family: Courier, monospace;
     -ms-transform: rotate(-90deg); /* IE 9 */
@@ -9530,12 +9549,12 @@ input, button, submit { border:none; }
 }
 #paperarea .artwallet .btcprivwif
 {
-  position: absolute; top: 86px; right: 540px; z-index: 100; font-size: 11px; background-color: transparent;
+  position: absolute; top: 96px; right: 448px; z-index: 100; font-size: 11px; background-color: transparent;
   font-weight: 100; color: #000000; margin: 0; width: 124px; height: 32px; text-align: center;
     word-wrap: break-word;
-  -ms-transform: rotate(90deg); /* IE 9 */
-  -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
-  transform: rotate(90deg);
+  -ms-transform: rotate(-90deg); /* IE 9 */
+  -webkit-transform: rotate(-90deg); /* Chrome, Safari, Opera */
+  transform: rotate(-90deg);
     font-family: Courier, monospace;
 }
 #paperarea .artwallet .btcencryptedkey
@@ -9557,7 +9576,7 @@ input, button, submit { border:none; }
 .1percentwidth { width: 1%; }
 .100pxwidth { width: 100px; }
 
-.paperWalletText { bottom: 8px; height: 156px; left: 339px; padding: 15px 15px 17px 37px; position: absolute; width: 265px; font-size: 10px; color: #383838; line-height: 15px; }
+.paperWalletText { visibility: hidden; bottom: 8px; height: 156px; left: 339px; padding: 15px 15px 17px 37px; position: absolute; width: 265px; font-size: 10px; color: #383838; line-height: 15px; }
 .paperWalletText ul { margin: 0px; padding: 0px; }
 .paperWalletText li { line-height: 13px; margin-bottom: 5px; }
 
@@ -9569,7 +9588,7 @@ input, button, submit { border:none; }
 
 #bulkarea .body { padding: 5px 0 0 0; }
 #bulkarea .format { font-style: italic; font-size: 90%; }
-#bulktextarea { font-size: 100%; width: 936px; margin: 15px 0 30px 0; padding: 20px; border-radius: 20px; }
+#bulktextarea { font-size: 100%; width: 936px; margin: 15px 0 30px 0; padding: 20px; border-radius: 3px;  max-width: 900px; box-shadow: 0 2px 10px black}
 #brainarea .keyarea { visibility: hidden; min-height: 110px; }
 #detailarea span.qrinput { position: relative; padding: 10px; }
 #detailarea span.qrinput #detailprivkey { width: 420px; height: 20px; border: 1px solid #ccc; padding: 7px; border-radius: 10px;}
@@ -9628,9 +9647,9 @@ input, button, submit { border:none; }
 {
   #tagline { margin: 0 0 15px 0; font-style: italic; text-align: left; }
   .menu { text-align: left; }
-  .menu .tab { border-top-left-radius: 5px; border-top-right-radius: 5px; display: inline-block; background-color: #CCC; padding: 5px 20px; margin: 0 2px 0 0; position: relative; top: 1px; z-index: 110; cursor: pointer; }
-  .menu .tab:hover { color: white; background: #666;}
-  .menu .tab.selected { background-color: #FFF; border-bottom: 1px solid #FFF; cursor: default; }
+  .menu .tab { border-top-left-radius: 5px; border-top-right-radius: 5px; display: inline-block; background-color: #eee ; color: black; padding: 5px 20px; margin: 0 2px 0 0; position: relative; top: 1px; z-index: 110; cursor: pointer; }
+  .menu .tab:hover { color: white; background: #444;}
+  .menu .tab.selected { background-color: #FFF; border-bottom: 1px solid #FFF; cursor: default; color: black;}
   .menu .tab.selected:hover { color: #000; }
   .pagebreak { height: 50px; }
   .commands { padding: 10px 2px; margin-bottom: 0; background-color: white; width: 1000px; border-radius: 0 20px 0 0; }
@@ -9659,7 +9678,8 @@ input, button, submit { border:none; }
   #bulkstartindex { width: 35px; border: 1px solid #ccc; padding: 7px; border-radius: 3px;}
   #bulklimit { width: 45px; border: 1px solid #ccc; padding: 7px; border-radius: 3px; }
 
-  .footer { width:100%; background: white; height:100px; font-size: 90%; line-height:30px; clear: both; width: 100%; padding: 10px 0 10px 0; margin: 50px 0 0 0; text-align: center; }
+  .footer { width:100%; background: white; font-size: 12px; line-height:16px; clear: both; width: 100%; padding: 10px 0 10px 0; margin: 50px 0 0 0; text-align: center; background: rgba(8, 10, 12, 1);
+    color: rgba(185,200,210,.33); position: fixed; bottom: 0px; z-index: 2000; height: 45px;}
   .footer div span.item { margin: 10px; }
   .footer .authorbtc { float: left; width: 470px; }
   .footer .authorbtc span.item { text-align: left; display: block; padding: 0 20px; }
@@ -9671,8 +9691,8 @@ input, button, submit { border:none; }
 }
 @media print
 {
-  body { -webkit-print-color-adjust: exact; width: 1000px; height: 450px;}
-  #main { width: auto; }
+  body { -webkit-print-color-adjust: exact; color-adjust: exact; width: 1000px; height: 450px; background: none}
+  #main { width: auto;}
   #singlearea { border: 0; }
   #singlesafety { border: 0; }
   #paperarea .keyarea:first-child { border-top: 1px solid #BFBFBF; }
@@ -9689,9 +9709,20 @@ input, button, submit { border:none; }
   .faq { display: none; }
   .banner { display: none; }
   #currency { display: none; }
+  #guide { display: none; }
   #paperarea .artwallet .btcaddress, #paperarea .artwallet .btcprivwif { z-index: 999; }
   .paperWalletText { z-index: 999;}
-    .dogeTag { display: none; }
+  .dogeTag { display: none; }
+  #paperarea .artwallet .qrcode_public { top: 247px; right: 556px; z-index: 100; margin: 0; float: none; display: block; position: absolute; background-color: #FFFFFF;
+                                    padding: 5px 5px 2px 5px; }
+  #paperarea .artwallet .qrcode_private { top: 52px; right: 556px; z-index: 100; margin: 0; float: none; display: block; position: absolute; background-color: #FFFFFF;
+                                    padding: 5px 5px 2px 5px;
+                                    -ms-transform: rotate(180deg); /* IE 9 */
+                    -webkit-transform: rotate(180deg); /* Chrome, Safari, Opera */
+                    transform: rotate(180deg);
+                                     }
+  #wallets{box-shadow: none;}
+  #paperarea .keyarea.art {box-shadow: none;}
 }
 
   </style>
@@ -9828,7 +9859,7 @@ input, button, submit { border:none; }
           <div id="papercommands" class="row">
             <span><label id="paperlabelencrypt" for="paperencrypt" class="i18n">BIP38 Encrypt?</label> <input type="checkbox" id="paperencrypt" onchange="ninja.wallets.paperwallet.toggleEncrypt(this);" /></span>
             <span><label id="paperlabelBIPpassphrase" for="paperpassphrase" class="i18n">Passphrase:</label> <input type="text" id="paperpassphrase" /></span>
-
+			<span><label id="togglelightspan" class="i18n">Toggle Light Version</label> <input type="checkbox" id="togglelight" onchange="ninja.wallets.paperwallet.toggleLight(this);" /></span>
             <br/>
             <input type="button" id="papergenerate" class="btn" value="Randomly generate" onclick="ninja.wallets.paperwallet.build(document.getElementById('paperpassphrase').value);" />
             <span>OR</span>
@@ -9839,7 +9870,8 @@ input, button, submit { border:none; }
           </div>
 
         </div>
-        <div id="paperkeyarea"></div>
+		<div id="paperkeyarea"></div>
+		<div id="guide"><img src='images/guide.svg'/></div>
       </div>
 
       <div id="bulkarea" class="walletarea">
@@ -10565,7 +10597,10 @@ ninja.qrCode = {
 		return null;
 	},
 
-	createCanvas: function (text, sizeMultiplier) {
+	createCanvas: function (text, sizeMultiplier, color) {
+		if (!color){
+			color = "#000000";
+		};
 		sizeMultiplier = (sizeMultiplier == undefined) ? 2 : sizeMultiplier; // default 2
 		// create the qrcode itself
 		var typeNumber = ninja.qrCode.getTypeNumber(text);
@@ -10589,7 +10624,7 @@ ninja.qrCode = {
 		// draw in the canvas
 		for (var row = 0; row < qrcode.getModuleCount(); row++) {
 			for (var col = 0; col < qrcode.getModuleCount(); col++) {
-				ctx.fillStyle = qrcode.isDark(row, col) ? "#000000" : "#ffffff";
+				ctx.fillStyle = qrcode.isDark(row, col) ? color : "#ffffff";
 				ctx.fillRect(col * tileW, row * tileH, tileW, tileH);
 			}
 		}
@@ -10624,13 +10659,13 @@ ninja.qrCode = {
 	// example: { "id1": "string1", "id2": "string2"}
 	//		"id1" is the id of a div element where you want a QRCode inserted.
 	//		"string1" is the string you want encoded into the QRCode.
-	showQrCode: function (keyValuePair, sizeMultiplier) {
+	showQrCode: function (keyValuePair, sizeMultiplier, color) {
 		for (var key in keyValuePair) {
 			var value = keyValuePair[key];
 			try {
 				if (document.getElementById(key)) {
 					document.getElementById(key).innerHTML = "";
-					document.getElementById(key).appendChild(ninja.qrCode.createCanvas(value, sizeMultiplier));
+					document.getElementById(key).appendChild(ninja.qrCode.createCanvas(value, sizeMultiplier, color));
 				}
 			}
 			catch (e) {
@@ -11175,11 +11210,30 @@ ninja.wallets.paperwallet = {
 					div.style.pageBreakBefore = "always";
 				}
 			}
+
+			var noise = document.createElement("noise");
+			noise.setAttribute("id", "noise");
+			document.getElementById("paperkeyarea").appendChild(noise);
+
+			var options = {
+				"animate": false,
+				"patternWidth": 431.45,
+				"patternHeight": 296.37,
+				"grainOpacity": 1,
+				"grainDensity": 2.29,
+				"grainWidth": 5.66,
+				"grainHeight": 6.56
+			}
+			grained("#noise", options);
+
 			document.getElementById("paperkeyarea").appendChild(div);
+			document.getElementById("paperkeyarea").style.height = "426px";
+			document.getElementById("paperkeyarea").style.width = "1005px";
 			ninja.wallets.paperwallet.generateNewWallet(i);
 			ninja.wallets.paperwallet.remaining--;
 			setTimeout(ninja.wallets.paperwallet.batch, 0);
 		}
+
 	},
 
 	// generate bitcoin address, private key, QR Code and update information in the HTML
@@ -11226,7 +11280,7 @@ ninja.wallets.paperwallet = {
 	templateArtisticHtml: function (i) {
 		var keyelement = 'btcprivwif';
 		var coinImgUrl = "images/" + janin.selectedCurrency.name.toLowerCase() + ".png";
-		var walletBackgroundUrl = "images/" + janin.selectedCurrency.name.toLowerCase() + "-bg.png";
+		var walletBackgroundUrl = "images/" + janin.selectedCurrency.name.toLowerCase() + "-bg.svg";
 
 		var walletHtml =
 							"<div class='coinIcoin'></div><div class='artwallet' id='artwallet" + i + "'>" +
@@ -11243,11 +11297,11 @@ ninja.wallets.paperwallet = {
 	showArtisticWallet: function (idPostFix, bitcoinAddress, privateKey) {
 		var keyValuePair = {};
 		keyValuePair["qrcode_public" + idPostFix] = bitcoinAddress;
-		ninja.qrCode.showQrCode(keyValuePair, 3.5);
+		ninja.qrCode.showQrCode(keyValuePair, 3.5, "#000000");
 		
         var keyValuePair = {};
         keyValuePair["qrcode_private" + idPostFix] = privateKey;
-        ninja.qrCode.showQrCode(keyValuePair, 2.8);
+        ninja.qrCode.showQrCode(keyValuePair, 2.8, "#808080");
         
         document.getElementById("btcaddress" + idPostFix).innerHTML = bitcoinAddress;
 		document.getElementById("btcprivwif" + idPostFix).innerHTML = privateKey;
@@ -11258,6 +11312,15 @@ ninja.wallets.paperwallet = {
 		document.getElementById("paperpassphrase").disabled = !element.checked;
 		ninja.wallets.paperwallet.encrypt = element.checked;
 		ninja.wallets.paperwallet.resetLimits();
+	},
+
+	toggleLight: function (element) {
+		var current = document.getElementById('papersvg1').getAttribute('src');
+		if(current == 'images/moin-bg.svg'){
+			document.getElementById('papersvg1').setAttribute('src', 'images/moin-bg-light.svg');
+		}else{
+			document.getElementById('papersvg1').setAttribute('src', 'images/moin-bg.svg');
+		}
 	},
 
 	resetLimits: function () {
@@ -12251,7 +12314,7 @@ for(i = 0; i < janin.currencies.length; i++) {
 	currencieslist += "'>"+janin.currencies[i].name+"</a> ";
     j++;
 }
-supportedcurrencies.innerHTML = currencieslist;
+// supportedcurrencies.innerHTML = currencieslist;
 document.getElementById("supportedcurrenciescounter").innerHTML = j.toString() + " ";
 // populate donate list
 document.getElementById("donateqrcode").style.display = "none";
